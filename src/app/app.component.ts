@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 // import * from '@types/gapi.client';
 
 // declare var gapi: gapi;
@@ -13,11 +14,26 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   public ngOnInit(): void {
-    this.test();
+    this.loadClient().subscribe ( () => {
+      alert('loaded');
+    })
   }
 
-  public test(): void {
-    gapi.load('client', () => this.clientLoaded());
+  public loadClient(): Observable<boolean> {
+    return new Observable<boolean>((subscriber) => {
+      gapi.load('client', () => {
+        subscriber.next(true);
+        subscriber.complete();
+      });
+    });
+  }
+
+  public authorise(): Observable<boolean> {
+    return new Observable<boolean>((subscriber) => {
+      // TODO introduce auth2.0
+      subscriber.next();
+      subscriber.complete();
+    });
   }
 
   private clientLoaded(): void {
