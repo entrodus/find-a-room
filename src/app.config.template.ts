@@ -1,5 +1,4 @@
 // Rename to app.config.ts and fill in all required information
-export const CLIENT_ID = 'xxx';
-export const CLIENT_SECRET = 'xxx';
-export const PROJECT_ID = 'xxx';
-
+// obtain both from https://console.developes.google.com/apis/credentials
+export const API_KEY = 'xxx';
+export const CLIENT_ID = 'xxx.apps.googleusercontent.com';
