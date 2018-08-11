@@ -12,7 +12,16 @@ export class AppComponent implements OnInit {
 
   constructor(private auth: AuthorisationService) { }
   public ngOnInit(): void {
-    this.auth.init();
+    this.auth.init().subscribe(() => {
+      alert('initialised');
+
+      //       const request = gapi.client.calendar.calendarList.list({});
+      //       console.log('request', request);
+      //       request.execute((response) => {
+      //         console.log('response', response);
+      //       });
+
+    });
   }
 
 }

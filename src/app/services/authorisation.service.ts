@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CLIENT_ID, API_KEY } from 'src/app.config';
 import { Observable, from as observableFrom, of as observableOf } from 'rxjs';
-import { mapTo } from 'rxjs/operators';
+import { mapTo, concatMap } from 'rxjs/operators';
+
+const SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +12,13 @@ export class AuthorisationService {
 
   constructor() { }
 
-  public init(): void {
-    this.loadClient().subscribe(() => {
-      // alert('loaded');
-      this.initClient().subscribe(() => {
-        // alert('initialised');
-        this.signIn().subscribe(signedIn => {
-          // alert(`signed in ${signedIn}`);
-
-          console.log('gapi client', gapi.client);
-          // console.log('calendar list', gapi.client.calendar.calendarList);
-          const request = gapi.client.calendar.calendarList.list({});
-          console.log('request', request);
-          request.execute((response) => {
-            console.log('response', response);
-          });
-        });
-      });
-
-    });
+  public init(): Observable<any> {
+    return observableOf(null).pipe(
+      concatMap(() => this.loadClient()),
+      concatMap(() => this.initClient()),
+      concatMap(() => this.signIn()),
+      mapTo({})
+    );
   }
 
   private loadClient(): Observable<boolean> {
@@ -48,7 +38,7 @@ export class AuthorisationService {
       apiKey: API_KEY,
       discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
       clientId: CLIENT_ID,
-      scope: 'https://www.googleapis.com/auth/calendar.readonly'
+      scope: SCOPE
     });
 
     return observableFrom(initPromise);
@@ -56,8 +46,12 @@ export class AuthorisationService {
 
   private signIn(): Observable<boolean> {
     const auth = gapi.auth2.getAuthInstance();
+    if (auth.isSignedIn && auth.currentUser.get().hasGrantedScopes(SCOPE)) {
+      return observableOf(true);
+    }
+
     const signIn$ = observableFrom(auth.signIn());
-    return signIn$.pipe(mapTo(true))
+    return signIn$.pipe(mapTo(true));
   }
 
 }
