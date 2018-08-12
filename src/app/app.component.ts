@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorisationService } from './services/authorisation.service';
+import { CalendarService } from './services/calendar.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,20 @@ import { AuthorisationService } from './services/authorisation.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  public authInitialised = false;
 
-  constructor(private auth: AuthorisationService) { }
+  constructor(
+    private authService: AuthorisationService,
+    private calendarService: CalendarService,
+  ) { }
+
   public ngOnInit(): void {
-    this.auth.init().subscribe(() => {
-      alert('initialised');
+    this.authService.init().subscribe(() => {
+      this.authInitialised = true;
 
-      //       const request = gapi.client.calendar.calendarList.list({});
-      //       console.log('request', request);
-      //       request.execute((response) => {
-      //         console.log('response', response);
-      //       });
+      this.calendarService.getCalendarsList().subscribe ( calendarsList => {
+        console.log('calendarsList', calendarsList);
+      });
 
     });
   }
