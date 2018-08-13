@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
     this.authService.init().subscribe(() => {
       this.authInitialised = true;
 
-      this.calendarService.getCalendarsList().subscribe ( calendarsList => {
-        console.log('calendarsList', calendarsList);
+      this.calendarService.getAllCalendars().subscribe ( calendars => {
+        console.log('calendars', calendars);
       });
 
     });
