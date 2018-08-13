@@ -12,13 +12,26 @@ export class AuthorisationService {
 
   constructor() { }
 
-  public init(): Observable<any> {
+  public init(): Observable<gapi.auth2.GoogleUser> {
     return observableOf(null).pipe(
       concatMap(() => this.loadClient()),
       concatMap(() => this.initClient()),
       concatMap(() => this.signIn()),
-      mapTo({})
+      concatMap(() => observableOf(this.retrieveGoogleUser()))
     );
+  }
+
+  private retrieveGoogleUser(): gapi.auth2.GoogleUser {
+    const authInstance = gapi.auth2.getAuthInstance();
+    if (!authInstance) {
+      throw new Error('Auth2 not properly initialised');
+    }
+    const currentUser = authInstance.currentUser;
+    if (!currentUser) {
+      throw new Error('Auth2 user not set');
+    }
+
+    return currentUser.get();
   }
 
   private loadClient(): Observable<boolean> {
@@ -46,6 +59,7 @@ export class AuthorisationService {
 
   private signIn(): Observable<boolean> {
     const auth = gapi.auth2.getAuthInstance();
+
     if (auth.isSignedIn && auth.currentUser.get().hasGrantedScopes(SCOPE)) {
       return observableOf(true);
     }
