@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { CLIENT_ID, API_KEY } from 'src/app.config';
 import { Observable, from as observableFrom, of as observableOf } from 'rxjs';
 import { mapTo, concatMap } from 'rxjs/operators';
@@ -10,7 +10,7 @@ const SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
 })
 export class AuthorisationService {
 
-  constructor() { }
+  constructor(private ngZone: NgZone) { }
 
   public init(): Observable<gapi.auth2.GoogleUser> {
     return observableOf(null).pipe(
@@ -37,8 +37,10 @@ export class AuthorisationService {
   private loadClient(): Observable<boolean> {
     return new Observable<boolean>((subscriber) => {
       gapi.load('client:auth2', () => {
-        subscriber.next(true);
-        subscriber.complete();
+        this.ngZone.run(() => {
+          subscriber.next(true);
+          subscriber.complete();
+        });
       });
     });
   }

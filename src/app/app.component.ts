@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorisationService } from './services/authorisation.service';
 import { CalendarService } from './services/calendar.service';
@@ -8,7 +8,7 @@ import { CalendarService } from './services/calendar.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   public user: gapi.auth2.GoogleUser = null;
   public calendars$: Observable<gapi.client.calendar.CalendarListEntry[]>;
@@ -20,17 +20,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
   ) { }
 
-  public ngAfterViewInit(): void {
-    // this.test = true;
+  public ngOnInit(): void {
     this.authService.init().subscribe((user) => {
-      this.calendars$ = this.calendarService.getAllCalendars();
       this.user = user;
+      this.calendars$ = this.calendarService.getAllCalendars();
+      // weird but change detection is broken probably cause something operatos outside ngZone
       this.cdr.detectChanges();
     });
-  }
-
-  public ngOnInit(): void {
-
   }
 
 }

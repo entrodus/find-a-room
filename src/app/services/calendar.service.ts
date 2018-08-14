@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable, of as observableOf } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 
@@ -6,6 +6,8 @@ import { concatMap, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CalendarService {
+
+  constructor(private ngZone: NgZone) { }
 
   private get calendarList(): gapi.client.calendar.CalendarListResource {
     // weird typecasts cause of type missmatches (https://github.com/Bolisov/google-api-typings-generator/issues/3)
@@ -35,14 +37,16 @@ export class CalendarService {
 
     return new Observable(subscriber => {
       request.execute(response => {
-        subscriber.next(response);
-        subscriber.complete();
+
+        this.ngZone.run(() => {
+          subscriber.next(response);
+          subscriber.complete();
+        });
+
       });
 
     });
 
   }
-
-  constructor() { }
 
 }
