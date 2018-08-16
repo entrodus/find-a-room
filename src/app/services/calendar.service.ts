@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable, of as observableOf } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
+import { Calendar } from 'src/app/models/calendar';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CalendarService {
     return client.calendar.calendarList as gapi.client.calendar.CalendarListResource;
   }
 
-  public getAllCalendars(): Observable<gapi.client.calendar.CalendarListEntry[]> {
+  public getAllCalendars(): Observable<Calendar[]> {
 
     return this.getCalendarList().pipe(
       concatMap(response => {
@@ -27,9 +28,21 @@ export class CalendarService {
           : observableOf(response.result.items);
 
         return combineWithNextIfAvailable$;
-      })
+      }),
+      map(entries => entries.map(entry => this.mapToCalendar(entry)))
     );
 
+  }
+
+  private mapToCalendar(source: gapi.client.calendar.CalendarListEntry): Calendar {
+    const calendar = new Calendar();
+    calendar.id = source.id;
+    calendar.summary = source.summary;
+    calendar.description = source.description;
+    calendar.backgroundColor = source.backgroundColor;
+    calendar.foregroundColor = source.foregroundColor;
+    calendar.etag = source.etag;
+    return calendar;
   }
 
   private getCalendarList(pageToken: string = null): Observable<gapi.client.Response<gapi.client.calendar.CalendarList>> {

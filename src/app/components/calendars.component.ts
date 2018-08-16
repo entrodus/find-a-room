@@ -1,17 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Calendar } from 'src/app/models/calendar';
 
 @Component({
   selector: 'app-calendars',
   templateUrl: './calendars.component.html',
   styleUrls: ['./calendars.component.css']
 })
-export class CalendarsComponent implements OnInit {
-  @Input() calendars: gapi.client.calendar.CalendarListEntry[];
+export class CalendarsComponent implements OnInit, OnChanges {
+  @Input() calendars: Calendar[];
 
   constructor() { }
 
-  ngOnInit() {
-    // this.calendars.length
+  public ngOnInit() {
+
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.calendars);
   }
 
 }
