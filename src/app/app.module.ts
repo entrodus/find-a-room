@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CalendarsComponent } from './components/calendars.component';
+import { SelectableCalendarComponent } from './components/selectable-calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarsComponent
+    CalendarsComponent,
+    SelectableCalendarComponent
   ],
   imports: [
     BrowserModule
