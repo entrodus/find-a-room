@@ -4,7 +4,7 @@ import { Calendar } from '../models/calendar';
 @Component({
   selector: 'app-selectable-calendar',
   templateUrl: './selectable-calendar.component.html',
-  styleUrls: ['./selectable-calendar.component.css']
+  styleUrls: ['./selectable-calendar.component.scss']
 })
 export class SelectableCalendarComponent implements OnInit {
   @Input() calendar: Calendar;
@@ -13,7 +13,7 @@ export class SelectableCalendarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }
