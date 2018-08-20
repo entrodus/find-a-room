@@ -1,3 +1,7 @@
+<div *ngIf="calendars">
+  <app-selectable-calendar *ngFor="let calendar of calendars" [calendar]="calendar" ></app-selectable-calendar>
+</div>
+
 <p *ngIf="calendars">
   calendars count: {{calendars.length}}
 </p>

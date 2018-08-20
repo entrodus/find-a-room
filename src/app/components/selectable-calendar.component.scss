@@ -1,14 +1,24 @@
 :host {
     display: inline-block;
 
+    .external-container  {
+        border: 1px solid lightgray;
 
-    div {
-        border: 1px solid gray;
-        padding: 10px;
+        .internal-container {
+            display: flex;
+            align-items: center;
+            margin: 5px;
 
-        input {
-            margin-top: 5px;
-        }
+            input {
+                margin: 5px;
+            }
+
+            label {
+                margin: 5px;
+                margin-left: 0;
+            }
     
+        }
     }
+   
 }

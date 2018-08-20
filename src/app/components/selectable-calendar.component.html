@@ -1,4 +1,6 @@
-<div [style.background] = "calendar.backgroundColor" [style.color]="calendar.foregroundColor">
-  <input type="checkbox">
-  <span>{{calendar.summary}}</span>
+<div class='external-container'>
+  <div class='internal-container' [style.background] = "calendar.backgroundColor" [style.color]="calendar.foregroundColor">
+    <input id='test' type="checkbox">
+    <label for='test'>{{calendar.summary}}</label>
+  </div>
 </div>
