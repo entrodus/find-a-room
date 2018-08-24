@@ -1,7 +1,4 @@
-<div *ngIf="calendars">
-  <app-selectable-calendar *ngFor="let calendar of calendars" [calendar]="calendar" ></app-selectable-calendar>
+<div *ngIf="calendars" id='calendars-container'>
+  <app-selectable-calendar *ngFor="let calendar of calendars" [calendar]="calendar" [selected]="isCalendarSelected(calendar.id)"
+   (selectedChanged)="setCalendarSelected(calendar.id, $event)" ></app-selectable-calendar>
 </div>
-
-<p *ngIf="calendars">
-  calendars count: {{calendars.length}}
-</p>

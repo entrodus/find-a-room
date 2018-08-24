@@ -19,7 +19,7 @@ class MyUtils {
     for (let index = 0; index < ITEM_COUNT; index++) {
 
       const calendar = new Calendar();
-      calendar.summary = `calendar ${index}`;
+      calendar.summary = `Calendar summary Number #${index}`;
 
       const colourIndex =  index % colours.length;
 
@@ -37,8 +37,12 @@ export default sandboxOf(CalendarsComponent, {
     SelectableCalendarComponent
   ]
 }).add('Display calendars', {
-  template: `<app-calendars [calendars]="calendars"></app-calendars>`,
+  template: `
+    <app-calendars [calendars]="calendars" (selectedCalendarIdsChange)="selectedCalendarIds=$event"></app-calendars>
+    <p *ngIf="selectedCalendarIds.length > 0">Selected Calendar Ids: {{selectedCalendarIds.join(',')}}</p>
+  `,
   context: {
     calendars: MyUtils.getCalendars(),
+    selectedCalendarIds: new Array<string>(),
   }
 });
