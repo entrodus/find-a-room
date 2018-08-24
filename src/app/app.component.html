@@ -1,3 +1,5 @@
 <div *ngIf="user">
-  <app-calendars [calendars]="calendars$ | async"></app-calendars>
+  <app-calendars [calendars]="calendars$ | async" (selectedCalendarIdsChange)="selectedCalendarIds=$event"></app-calendars>
 </div>
+
+<p *ngIf="selectedCalendarIds.length > 0">selected calendars: {{selectedCalendarIds.join(',')}}</p>

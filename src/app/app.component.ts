@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   public calendars$: Observable<gapi.client.calendar.CalendarListEntry[]>;
   public test = false;
 
+  public selectedCalendarIds: string[] = [];
+
   constructor(
     private authService: AuthorisationService,
     private calendarService: CalendarService,
