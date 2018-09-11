@@ -2,6 +2,7 @@ import { sandboxOf } from 'angular-playground';
 import { CalendarsComponent } from './calendars.component';
 import { Calendar } from '../models/calendar';
 import { SelectableCalendarComponent } from './selectable-calendar.component';
+import { FormsModule } from '@angular/forms';
 
 
 class MyUtils {
@@ -25,6 +26,7 @@ class MyUtils {
 
       calendar.backgroundColor = colours[colourIndex].background;
       calendar.foregroundColor = colours[colourIndex].foreground;
+      calendar.id = index.toString();
       calendars.push(calendar);
     }
 
@@ -35,6 +37,9 @@ class MyUtils {
 export default sandboxOf(CalendarsComponent, {
   declarations: [
     SelectableCalendarComponent
+  ],
+  imports: [
+    FormsModule
   ]
 }).add('Display calendars', {
   template: `
@@ -43,6 +48,7 @@ export default sandboxOf(CalendarsComponent, {
   `,
   context: {
     calendars: MyUtils.getCalendars(),
-    selectedCalendarIds: new Array<string>(),
+    selectedCalendarIds: ['2', '3']
+    // selectedCalendarIds: new Array<string>(),
   }
 });

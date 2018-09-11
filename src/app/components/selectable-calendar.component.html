@@ -1,6 +1,8 @@
 <div class='external-container'>
-  <div class='internal-container' [style.background] = "calendar.backgroundColor" [style.color]="calendar.foregroundColor">
-    <input [id]='id' type="checkbox">
-    <label [for]='id'>{{calendar.summary}}</label>
-  </div>
+  <form>
+    <div class='internal-container' [style.background]="calendar.backgroundColor" [style.color]="calendar.foregroundColor">
+      <input [id]='id' type="checkbox" [name]='id' [ngModel]="selected" (ngModelChange)="selected = $event">
+      <label [for]='id'>{{calendar.summary}}</label>
+    </div>
+  </form>
 </div>

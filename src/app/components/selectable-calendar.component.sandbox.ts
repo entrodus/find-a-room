@@ -1,7 +1,7 @@
 import { sandboxOf } from 'angular-playground';
 import { SelectableCalendarComponent } from './selectable-calendar.component';
 import { Calendar } from '../models/calendar';
-
+import { FormsModule } from '@angular/forms';
 
 class MyUtils {
   public static getMockedCalendar(): Calendar {
@@ -13,10 +13,13 @@ class MyUtils {
   }
 }
 
-export default sandboxOf(SelectableCalendarComponent)
-  .add('Selectable calendar (colour scheme #1)', {
-    template: `<app-selectable-calendar [calendar]="calendar"></app-selectable-calendar>`,
-    context: {
-      calendar: MyUtils.getMockedCalendar(),
-    }
-  });
+export default sandboxOf(SelectableCalendarComponent, {
+  imports: [
+    FormsModule
+  ]
+}).add('Selectable calendar (colour scheme #1)', {
+  template: `<app-selectable-calendar [calendar]="calendar"></app-selectable-calendar>`,
+  context: {
+    calendar: MyUtils.getMockedCalendar(),
+  }
+});

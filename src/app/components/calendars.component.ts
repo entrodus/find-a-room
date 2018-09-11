@@ -33,6 +33,9 @@ export class CalendarsComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    if (!!this.calendars) {
+      this.selectedCalendarIds = new Set<string>(this.calendars.map(calendar => calendar.id));
+    }
     console.log(this.calendars);
   }
 

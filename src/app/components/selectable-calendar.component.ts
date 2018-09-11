@@ -26,4 +26,8 @@ export class SelectableCalendarComponent implements OnInit {
     });
   }
 
+  public raiseSelectedChanged(value: boolean) {
+    this.selectedChanged.emit(value);
+  }
+
 }
