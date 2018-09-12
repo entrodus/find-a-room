@@ -28,15 +28,17 @@ export class CalendarsComponent implements OnInit, OnChanges {
     } else {
       this.selectedCalendarIds.delete(id);
     }
-    console.log('about to emit', this.selectedCalendarIds);
-    this.selectedCalendarIdsChange.emit(Array.from(this.selectedCalendarIds.values()));
+    this.emitSelectedCalendars();
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(_changes: SimpleChanges): void {
     if (!!this.calendars) {
       this.selectedCalendarIds = new Set<string>(this.calendars.map(calendar => calendar.id));
+      this.emitSelectedCalendars();
     }
-    console.log(this.calendars);
   }
 
+  private emitSelectedCalendars(): void {
+    this.selectedCalendarIdsChange.emit(Array.from(this.selectedCalendarIds.values()));
+  }
 }

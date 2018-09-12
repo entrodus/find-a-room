@@ -1,7 +1,7 @@
 <div class='external-container'>
   <form>
     <div class='internal-container' [style.background]="calendar.backgroundColor" [style.color]="calendar.foregroundColor">
-      <input [id]='id' type="checkbox" [name]='id' [ngModel]="selected" (ngModelChange)="selected = $event">
+      <input [id]='id' type="checkbox" [name]='id' [(ngModel)]="selected" (ngModelChange)="raiseSelectedChanged($event)">
       <label [for]='id'>{{calendar.summary}}</label>
     </div>
   </form>
