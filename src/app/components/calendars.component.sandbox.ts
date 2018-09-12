@@ -48,7 +48,6 @@ export default sandboxOf(CalendarsComponent, {
   `,
   context: {
     calendars: MyUtils.getCalendars(),
-    selectedCalendarIds: ['2', '3']
-    // selectedCalendarIds: new Array<string>(),
+    selectedCalendarIds: new Array<string>(),
   }
 });
