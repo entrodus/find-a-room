@@ -1,0 +1,11 @@
+<form>
+  <div>
+    <label>Date and time</label>
+    <input id='datetime' name='datetime' [(ngModel)]="dateTimeString">
+  </div>
+  <div>
+    <label>Duration in minutes</label>
+    <input id='duration' name='duration' type="number" [(ngModel)]="duration">
+  </div>
+  <button type='submit' (click)="searchForFreeCalendars()">search for empty slot</button>
+</form>

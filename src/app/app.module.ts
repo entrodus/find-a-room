@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CalendarsComponent } from './components/calendars.component';
 import { SelectableCalendarComponent } from './components/selectable-calendar.component';
+import { SearchFreeSlotsComponent } from './components/search-free-slots.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarsComponent,
-    SelectableCalendarComponent
+    SelectableCalendarComponent,
+    SearchFreeSlotsComponent
   ],
   imports: [
     BrowserModule,

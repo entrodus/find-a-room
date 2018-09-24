@@ -23,7 +23,8 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "moment": "2.22.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.8",

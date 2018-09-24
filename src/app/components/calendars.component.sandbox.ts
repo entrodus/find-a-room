@@ -44,7 +44,7 @@ export default sandboxOf(CalendarsComponent, {
 }).add('Display calendars', {
   template: `
     <app-calendars [calendars]="calendars" (selectedCalendarIdsChange)="selectedCalendarIds=$event"></app-calendars>
-    <p *ngIf="selectedCalendarIds.length > 0">Selected Calendar Ids: {{selectedCalendarIds.join(',')}}</p>
+    <p *ngIf="selectedCalendarIds && selectedCalendarIds.length > 0">Selected Calendar Ids: {{selectedCalendarIds.join(',')}}</p>
   `,
   context: {
     calendars: MyUtils.getCalendars(),
