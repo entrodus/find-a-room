@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   public user: gapi.auth2.GoogleUser = null;
   public calendars$: Observable<Calendar[]>;
-  public freeCalendars$: Observable<Calendar[]>; // TODO-NOW use this to visualise results
+  public freeCalendars$: Observable<Calendar[]>;
   public selectedCalendarIds: string[] = [];
 
   private freeCalendarIdsSubject = new Subject<string[]>();

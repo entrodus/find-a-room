@@ -1,0 +1,7 @@
+<h2>Search yielded the following results</h2>
+
+<ul *ngFor="let calendar of calendars">
+  <li>{{calendar.summary}}</li>
+</ul>
+
+<p *ngIf="!calendars || calendars.length === 0" >NO EMPTY SLOTS FOUND</p>

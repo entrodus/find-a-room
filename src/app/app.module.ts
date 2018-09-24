@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { CalendarsComponent } from './components/calendars.component';
 import { SelectableCalendarComponent } from './components/selectable-calendar.component';
 import { SearchFreeSlotsComponent } from './components/search-free-slots.component';
+import { FreeCalendarsComponent } from './components/free-calendars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarsComponent,
     SelectableCalendarComponent,
-    SearchFreeSlotsComponent
+    SearchFreeSlotsComponent,
+    FreeCalendarsComponent
   ],
   imports: [
     BrowserModule,
