@@ -1,3 +1,4 @@
+<p class="section-header">Available Calendars</p>
 <div *ngIf="calendars" id='calendars-container'>
   <app-selectable-calendar *ngFor="let calendar of calendars" [calendar]="calendar" [selected]="isCalendarSelected(calendar.id)"
    (selectedChanged)="setCalendarSelected(calendar.id, $event)" ></app-selectable-calendar>

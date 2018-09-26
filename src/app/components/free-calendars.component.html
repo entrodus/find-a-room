@@ -1,7 +1,7 @@
-<h2>Search yielded the following results</h2>
+<p class="section-header">Results</p>
 
 <ul *ngFor="let calendar of calendars">
   <li>{{calendar.summary}}</li>
 </ul>
 
-<p *ngIf="!calendars || calendars.length === 0" >NO EMPTY SLOTS FOUND</p>
+<p *ngIf="calendars.length === 0" >NO EMPTY SLOTS FOUND</p>
