@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
 
 import { AppComponent } from './app.component';
 import { CalendarsComponent } from './components/calendars.component';
@@ -14,11 +19,15 @@ import { FreeCalendarsComponent } from './components/free-calendars.component';
     CalendarsComponent,
     SelectableCalendarComponent,
     SearchFreeSlotsComponent,
-    FreeCalendarsComponent
+    FreeCalendarsComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    CalendarModule,
+    ButtonModule,
+    PanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

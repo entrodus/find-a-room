@@ -1,7 +1,7 @@
-<p class="section-header">Results</p>
+<p-panel header="Results">
+  <ul *ngFor="let calendar of calendars">
+    <li>{{calendar.summary}}</li>
+  </ul>
 
-<ul *ngFor="let calendar of calendars">
-  <li>{{calendar.summary}}</li>
-</ul>
-
-<p *ngIf="calendars.length === 0" >NO EMPTY SLOTS FOUND</p>
+  <p *ngIf="calendars.length === 0">NO EMPTY SLOTS FOUND</p>
+</p-panel>

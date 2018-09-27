@@ -12,6 +12,7 @@ export class SearchFreeSlotsComponent implements OnInit {
   @Output() freeCalendarIdsEmitter = new EventEmitter<string[]>();
 
   public dateTimeString: string = new Date().toString();
+  public dateTime = new Date();
   public duration = 60; // in minutes
 
   constructor(private freeBusyService: FreeBusyService) { }

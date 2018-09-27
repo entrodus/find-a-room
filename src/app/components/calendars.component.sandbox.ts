@@ -3,6 +3,8 @@ import { CalendarsComponent } from './calendars.component';
 import { Calendar } from '../models/calendar';
 import { SelectableCalendarComponent } from './selectable-calendar.component';
 import { FormsModule } from '@angular/forms';
+import { PanelModule } from 'primeng/panel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 class MyUtils {
@@ -39,7 +41,9 @@ export default sandboxOf(CalendarsComponent, {
     SelectableCalendarComponent
   ],
   imports: [
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    PanelModule
   ]
 }).add('Display calendars', {
   template: `

@@ -1,12 +1,18 @@
-<p class="section-header">Search criteria</p>
-<form>
-  <div>
-    <label>Date and time</label>
-    <input id='datetime' name='datetime' [(ngModel)]="dateTimeString">
-  </div>
-  <div>
-    <label>Duration in minutes</label>
-    <input id='duration' name='duration' type="number" [(ngModel)]="duration">
-  </div>
-  <button type='submit' (click)="searchForFreeCalendars()">search for empty slot</button>
-</form>
+<p-panel header="Search criteria">
+  <form>
+    <div>
+      <label>Date and time</label>
+      <input id='datetime' name='datetime' [(ngModel)]="dateTimeString">
+    </div>
+    <div>
+      <label>Date and time</label>
+      <p-calendar id='datetime2' name='datetime2' [(ngModel)]="dateTime" showTime="true" showIcon="true" hourFormat="24"></p-calendar>
+    </div>
+    <!-- [inline]="true" -->
+    <div>
+      <label>Duration in minutes</label>
+      <input id='duration' name='duration' type="number" [(ngModel)]="duration">
+    </div>
+    <button type='submit' (click)="searchForFreeCalendars()">search for empty slot</button>
+  </form>
+</p-panel>
