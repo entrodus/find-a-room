@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { AppComponent } from './app.component';
 import { CalendarsComponent } from './components/calendars.component';
@@ -27,7 +28,8 @@ import { FreeCalendarsComponent } from './components/free-calendars.component';
     FormsModule,
     CalendarModule,
     ButtonModule,
-    PanelModule
+    PanelModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]

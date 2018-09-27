@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
-
+import { InputTextModule } from 'primeng/inputtext';
 
 export default sandboxOf(SearchFreeSlotsComponent, {
   imports: [
@@ -13,15 +13,11 @@ export default sandboxOf(SearchFreeSlotsComponent, {
     BrowserAnimationsModule,
     CalendarModule,
     PanelModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ]
 }).add('Search free slots', {
   template: `
     <app-search-free-slots></app-search-free-slots>
-  `,
-  // context: {
-  //   calendars: MyUtils.getCalendars(),
-  //   selectedCalendarIds: ['2', '3']
-  //   // selectedCalendarIds: new Array<string>(),
-  // }
+  `
 });

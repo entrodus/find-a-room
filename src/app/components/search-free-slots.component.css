@@ -1,0 +1,11 @@
+span {
+    margin-right: 20px;
+}
+
+input, p-calendar {
+    margin-left: 10px;
+}
+
+#duration-in-minutes {
+    margin-left: 40px;
+}

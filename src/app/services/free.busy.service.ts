@@ -14,13 +14,11 @@ export class FreeBusyService {
         return client.calendar.freebusy as gapi.client.calendar.FreebusyResource;
     }
 
-    public getFreeBusy(selectedCalendarIds: string[], timeFrom: string, timeTo: string): Observable<any> {
+    public getFreeBusy(selectedCalendarIds: string[], timeFrom: string, timeTo: string): Observable<string[]> {
         const typeLessfreebusy = this.freebusy as any;
         const items = selectedCalendarIds.map(id => ({ id }));
 
         return new Observable(subscriber => {
-
-            const d: gapi.client.calendar.FreeBusyResponse = null;
 
             typeLessfreebusy.query({ items: items, timeMin: timeFrom, timeMax: timeTo })
                 .execute((response: gapi.client.calendar.FreeBusyResponse) => {
@@ -60,52 +58,5 @@ export class FreeBusyService {
 
         return freeCalendarIds;
     }
-
-    // example of busy:
-
-
-    // {
-    //     "kind": "calendar#freeBusy",
-    //     "timeMin": "2018-09-21T09:00:56.000Z",
-    //     "timeMax": "2018-09-21T20:00:56.000Z",
-    //     "calendars": {
-    //      "ntsokos@gmail.com": {
-    //       "busy": [
-    //        {
-    //         "start": "2018-09-21T18:00:00Z",
-    //         "end": "2018-09-21T18:30:00Z"
-    //        }
-    //       ]
-    //      },
-    //      "thisiscodebase.com_9a78qfas6fa05d5f1u6nmuel4g@group.calendar.google.com": {
-    //       "busy": [
-    //        {
-    //         "start": "2018-09-21T10:00:00Z",
-    //         "end": "2018-09-21T15:30:00Z"
-    //        }
-    //       ]
-    //      },
-    //      "thisiscodebase.com_35bn0vlvff60e398th13nj34r0@group.calendar.google.com": {
-    //       "busy": [
-    //        {
-    //         "start": "2018-09-21T09:00:56Z",
-    //         "end": "2018-09-21T09:30:00Z"
-    //        },
-    //        {
-    //         "start": "2018-09-21T10:00:00Z",
-    //         "end": "2018-09-21T11:00:00Z"
-    //        },
-    //        {
-    //         "start": "2018-09-21T12:00:00Z",
-    //         "end": "2018-09-21T14:00:00Z"
-    //        },
-    //        {
-    //         "start": "2018-09-21T15:00:00Z",
-    //         "end": "2018-09-21T16:00:00Z"
-    //        }
-    //       ]
-    //      }
-    //     }
-    //    }
 
 }
