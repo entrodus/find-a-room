@@ -22,16 +22,14 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthorisationService,
     private calendarService: CalendarService,
-    private cdr: ChangeDetectorRef,
   ) { }
 
   public ngOnInit(): void {
+
     this.authService.init().subscribe((user) => {
       this.user = user;
       this.calendars$ = this.calendarService.getAllCalendars();
 
-      // weird but change detection is broken probably cause something operatos outside ngZone
-      this.cdr.detectChanges();
 
       // calculate free calendars
       this.freeCalendars$ = combineLatest(this.calendars$, this.freeCalendarIdsSubject.asObservable()).pipe(

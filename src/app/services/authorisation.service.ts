@@ -13,12 +13,13 @@ export class AuthorisationService {
   constructor(private ngZone: NgZone) { }
 
   public init(): Observable<gapi.auth2.GoogleUser> {
-    return observableOf(null).pipe(
-      concatMap(() => this.loadClient()),
+
+    return this.loadClient().pipe(
       concatMap(() => this.initClient()),
       concatMap(() => this.signIn()),
-      concatMap(() => observableOf(this.retrieveGoogleUser()))
+      concatMap(() => observableOf(this.retrieveGoogleUser())),
     );
+
   }
 
   private retrieveGoogleUser(): gapi.auth2.GoogleUser {
@@ -45,7 +46,7 @@ export class AuthorisationService {
     });
   }
 
-  private initClient(): Observable<void> {
+  private initClient(): Observable<boolean> {
     // Initialize the client with API key and People API, and initialize OAuth with an
     // OAuth 2.0 client ID and scopes (space delimited string) to request access.
 
@@ -56,7 +57,15 @@ export class AuthorisationService {
       scope: SCOPE
     });
 
-    return observableFrom(initPromise);
+    return new Observable<boolean>((subscriber) => {
+      initPromise.then(() => {
+        this.ngZone.run(() => {
+          subscriber.next(true);
+          subscriber.complete();
+        })
+      })
+    });
+
   }
 
   private signIn(): Observable<boolean> {
