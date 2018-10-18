@@ -1,0 +1,22 @@
+#login-container {
+    display: flex;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;    
+
+    button {
+        display: inline-flex;
+        align-items: center;
+
+        #google-image {
+            margin: 5px 0;
+            width: 50px;
+        }
+
+        ::ng-deep span {
+            font-size: 18px;
+        }
+    
+    }
+    
+}

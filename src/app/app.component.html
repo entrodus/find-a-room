@@ -1,3 +1,10 @@
+
+<div *ngIf="!user" id="login-container">
+  <button pButton type="button" label="login using google" class="ui-button-secondary" (click)="LoginAndFetchCalendars()">
+    <img id="google-image" src="/assets/google.png">
+  </button>
+</div>
+
 <div *ngIf="user">
   <app-calendars [calendars]="calendars$ | async" (selectedCalendarIdsChange)="selectedCalendarIds=$event"></app-calendars>
   <app-search-free-slots [selectedCalendarIds]="selectedCalendarIds" (freeCalendarIdsEmitter)="searchForFreeCalendarsResult($event)"></app-search-free-slots>

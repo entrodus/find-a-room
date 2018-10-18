@@ -8,7 +8,7 @@ import { Calendar } from './models/calendar';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
@@ -26,7 +26,16 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
 
+  }
+
+  public searchForFreeCalendarsResult(freeCalendarIds: string[]): void {
+    this.freeCalendarIdsSubject.next(freeCalendarIds);
+  }
+
+  public LoginAndFetchCalendars(): void {
+
     this.authService.init().subscribe((user) => {
+      console.log('init finished', user);
       this.user = user;
       this.calendars$ = this.calendarService.getAllCalendars();
 
@@ -44,10 +53,6 @@ export class AppComponent implements OnInit {
 
     });
 
-  }
-
-  public searchForFreeCalendarsResult(freeCalendarIds: string[]): void {
-    this.freeCalendarIdsSubject.next(freeCalendarIds);
   }
 
 }
